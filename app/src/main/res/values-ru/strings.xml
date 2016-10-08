@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">АутоЗагружатьФайлы</string>
+    <string name="edit_message">Пишы сообщение</string>
+    <string name="button_send">Посылай</string>
+</resources>

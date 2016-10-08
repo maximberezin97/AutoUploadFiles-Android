@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoCargarArchivos</string>
+    <string name="edit_message">Escribir un mensaje</string>
+    <string name="button_send">Enviar</string>
+</resources>
