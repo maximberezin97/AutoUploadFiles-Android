@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/hostname"
+        android:id="@+id/editTextHostname"
         android:hint="Hostname"
         android:inputType="textPersonName" />
 
@@ -30,8 +30,8 @@
         android:inputType="number"
         android:ems="10"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/hostname"
-        android:layout_toEndOf="@+id/hostname"
+        android:layout_toRightOf="@+id/editTextHostname"
+        android:layout_toEndOf="@+id/editTextHostname"
         android:id="@+id/editTextPort"
         android:hint="Port" />
 
@@ -54,7 +54,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editTextUsername"
-        android:layout_below="@+id/hostname"
+        android:layout_below="@+id/editTextHostname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Username" />
@@ -66,15 +66,14 @@
         android:layout_below="@+id/editTextPassword"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/checkBox" />
+        android:id="@+id/checkBoxSaveSettings" />
 
     <Button
         android:text="Connect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="connect"
-        android:layout_below="@+id/checkBox"
+        android:id="@+id/buttonConnect"
+        android:layout_below="@+id/checkBoxSaveSettings"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
