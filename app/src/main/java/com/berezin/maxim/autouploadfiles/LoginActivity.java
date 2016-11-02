@@ -17,10 +17,14 @@ public class LoginActivity extends AppCompatActivity {
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editTextHostname = (EditText) findViewById(R.id.editTextHostname);
-                EditText editTextPort = (EditText) findViewById(R.id.editTextPort);
-                EditText editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-                EditText editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+                String hostname = ((EditText) findViewById(R.id.editTextHostname)).getText().toString();
+                String port = ((EditText) findViewById(R.id.editTextPort)).getText().toString();
+                String username = ((EditText) findViewById(R.id.editTextUsername)).getText().toString();
+                String password = ((EditText) findViewById(R.id.editTextPassword)).getText().toString();
+                int portNum = Integer.valueOf(port);
+
+                FtpUploader ftpUploader = new FtpUploader(hostname, portNum, username, password);
+
             }
         });
     }
