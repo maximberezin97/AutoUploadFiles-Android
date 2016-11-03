@@ -21,9 +21,8 @@ public class LoginActivity extends AppCompatActivity {
                 String port = ((EditText) findViewById(R.id.editTextPort)).getText().toString();
                 String username = ((EditText) findViewById(R.id.editTextUsername)).getText().toString();
                 String password = ((EditText) findViewById(R.id.editTextPassword)).getText().toString();
-                int portNum = Integer.valueOf(port);
 
-                FtpUploader ftpUploader = new FtpUploader(hostname, portNum, username, password);
+                new FtpUploaderTask().execute(hostname, port, username, password);
 
             }
         });
