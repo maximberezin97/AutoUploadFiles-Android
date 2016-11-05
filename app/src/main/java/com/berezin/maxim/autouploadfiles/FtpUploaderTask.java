@@ -1,16 +1,24 @@
 package com.berezin.maxim.autouploadfiles;
 
 import android.os.AsyncTask;
+import android.os.Environment;
 
+import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.ftp.FTPSClient;
+import org.apache.commons.net.io.CopyStreamAdapter;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.Socket;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import javax.net.ssl.SSLSession;
@@ -33,9 +41,28 @@ public class FtpUploaderTask extends AsyncTask<String, Double, Double> {
         int port = Integer.valueOf(strings[1]);
         String username = strings[2];
         String password = strings[3];
+        //TODO: Either create a way to explore FTP server directories, or create a field to manually enter upload path.
+        String uploadPath = ""; //Temporarily empty until a file explorer is implemented.
+        List<File> files = null;
+        File currentFile;
+        double timeStart = 0.0;
+        double timeEnd = 0.0;
+        boolean fileStored = false;
 
         String result = "";
         FTPSClient ftp = getAltFtpsClient(false);
+
+        //TODO: Print FTP command console somewhere using FTP.ProtocolCommandListener.
+        //PrintStream printStream = newPrintStream();
+        //autoUploadFiles.redirectOutput(printStream);
+        //ftp.addProtocolCommandListener(new PrintCommandListener(printStream, true));
+        ftp.setCopyStreamListener(new CopyStreamAdapter() {
+            @Override
+            public void bytesTransferred(long totalBytesTransferred, int bytesTransferred, long streamSize) {
+                publishProgress(Long.valueOf(bytesTransferred).doubleValue(), Integer.valueOf(bytesTransferred).doubleValue());
+            }
+        });
+
         try {
             ftp.connect(hostname, port);
         } catch(IOException e) {
@@ -59,16 +86,35 @@ public class FtpUploaderTask extends AsyncTask<String, Double, Double> {
                     ftp.execPBSZ(0);
                     ftp.execPROT("P");
                     ftp.enterLocalPassiveMode();
-                    //ftp.changeWorkingDirectory(uploadPath);
-                    //InputStream fileStream;
+                    ftp.changeWorkingDirectory(uploadPath);
+                    InputStream fileStream;
+                    timeStart = System.currentTimeMillis();
+                    for(Iterator<File> it = files.iterator(); it.hasNext();) {
+                        currentFile = it.next();
+                        if(!isCancelled()) {
+                            fileStream = new FileInputStream(currentFile);
+                            fileStored = ftp.storeFile(currentFile.getName(), fileStream);
+                            fileStream.close();
+                        }
+                        if(!fileStored) break;
+                    }
+                    timeEnd = System.currentTimeMillis();
                 }
             } catch(IOException e) {
                 e.printStackTrace();
             }
         }
+        //TODO: Determine a way to show results, considering success timelapse or the different ways it can fail.
+        return timeEnd-timeStart;
+    }
 
+    @Override
+    protected void onProgressUpdate(Double... values) {
+        double totalBytesTransferred = values[0];
+        double bytesTransferred = values[1];
+        System.out.println("totalBytesTransferred = "+totalBytesTransferred+" bytesTransferred = "+bytesTransferred);
+        //TODO: Make a progress bar and update it with total transfer and current transfer values.
 
-        return -1.0;
     }
 
     private FTPSClient getAltFtpsClient(boolean isExplicit) {
