@@ -69,25 +69,21 @@
         android:id="@+id/checkBoxSaveSettings" />
 
     <Button
+        android:text="Select Files"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSelectFiles"
+        android:layout_below="@+id/checkBoxSaveSettings"
+        android:layout_alignLeft="@+id/buttonConnect"
+        android:layout_alignStart="@+id/buttonConnect" />
+
+    <Button
         android:text="Connect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonConnect"
-        android:layout_below="@+id/checkBoxSaveSettings"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/editTextFileList"
-        android:text="No files selected."
-        android:singleLine="false"
-        android:selectAllOnFocus="false"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/buttonSelectFiles"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
