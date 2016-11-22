@@ -20,8 +20,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/editTextHostname"
-        android:hint="Hostname"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:hint="@string/hint_hostname" />
 
     <EditText
         android:layout_weight="1"
@@ -33,7 +33,7 @@
         android:layout_toRightOf="@+id/editTextHostname"
         android:layout_toEndOf="@+id/editTextHostname"
         android:id="@+id/editTextPort"
-        android:hint="Port" />
+        android:hint="@string/hint_port" />
 
     <EditText
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
         android:layout_toStartOf="@+id/editTextPort"
         android:layout_toLeftOf="@id/editTextPort"
         android:id="@+id/editTextPassword"
-        android:hint="Password"
+        android:hint="@string/hint_password"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -57,10 +57,10 @@
         android:layout_below="@+id/editTextHostname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Username" />
+        android:hint="@string/hint_username" />
 
     <CheckBox
-        android:text="Save Settings"
+        android:text="@string/checkbox_save_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPassword"
@@ -69,7 +69,7 @@
         android:id="@+id/checkBoxSaveSettings" />
 
     <Button
-        android:text="Select Files"
+        android:text="@string/button_select_files"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSelectFiles"
@@ -78,7 +78,7 @@
         android:layout_alignStart="@+id/buttonConnect" />
 
     <Button
-        android:text="Connect"
+        android:text="@string/button_connect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonConnect"

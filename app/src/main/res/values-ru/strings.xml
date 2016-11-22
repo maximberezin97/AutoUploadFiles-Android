@@ -3,4 +3,11 @@
     <string name="app_name">АутоЗагружатьФайлы</string>
     <string name="edit_message">Пишы сообщение</string>
     <string name="button_send">Посылай</string>
+    <string name="hint_hostname">Имя хоста</string>
+    <string name="hint_port">Номер порта</string>
+    <string name="hint_username">Имя пользователя</string>
+    <string name="hint_password">Пароль</string>
+    <string name="button_connect">Подключение</string>
+    <string name="button_select_files">Выбрать файлы</string>
+    <string name="checkbox_save_settings">Сохранить настройки</string>
 </resources>
